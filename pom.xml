@@ -11,45 +11,6 @@
   <url>http://maven.apache.org</url>
   <repositories>
   
-  <build>
-  	<plugins>
-		<plugin>
-			<groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <configuration>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                    <instrumentation>
-                        <excludes>
-                            <exclude>**/*Test.class</exclude>
-                        </excludes>
-                    </instrumentation>
-                </configuration>
-            </plugin>
-        </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.5.1</version>
-                    <configuration>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>cobertura</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
     <!-- JGit repository -->
     <repository>
       <id>jgit-repository</id>
