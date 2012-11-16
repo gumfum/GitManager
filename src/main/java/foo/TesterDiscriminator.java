@@ -1,6 +1,7 @@
 package foo;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +9,37 @@ import java.util.List;
 import org.eclipse.jgit.api.BlameCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.blame.BlameResult;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.storage.file.FileRepository;
 
 public class TesterDiscriminator {
+	private File gitFile;
+	private Repository repository;
+	private Git git;
+	
   private BlameCommand command;
   private BlameResult result;
   private BufferedReader fileReader;
 
   TesterDiscriminator(Git git) {
-    command = git.blame();
+  	
+  	this.git = git;
+    command = this.git.blame();
   }
-
+  
+  TesterDiscriminator(String path) {
+	  try {
+	  	gitFile = new File(path);
+	  	repository = new FileRepository(gitFile);
+	  	git = new Git(repository);
+	  } catch(Exception e) {
+	  	System.out.println("Error");
+	  	return;
+	  }
+	  
+	  command = git.blame();
+  }
+  
   public void setFilePath(String filePath) {
     try {
       fileReader = new BufferedReader(new FileReader(filePath));
