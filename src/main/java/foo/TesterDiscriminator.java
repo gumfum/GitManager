@@ -13,9 +13,9 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepository;
 
 public class TesterDiscriminator {
-	private File gitFile;
-	private Repository repository;
-	private Git git;
+  private File gitFile;
+  private Repository repository;
+  private Git git;
 	
   private BlameCommand command;
   private BlameResult result;
