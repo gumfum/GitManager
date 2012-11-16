@@ -15,7 +15,7 @@ public class Main {
     try {
       Repository repos = new FileRepository(file);
       Git git = new Git(repos);
-      TesterDiscriminator2 td = new TesterDiscriminator2(git);
+      TesterDiscriminator td = new TesterDiscriminator(git);
 
       File[] files = dir.listFiles();
 
