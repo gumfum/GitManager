@@ -16,30 +16,33 @@ public class TesterDiscriminator {
   private File gitFile;
   private Repository repository;
   private Git git;
-	
+
   private BlameCommand command;
   private BlameResult result;
   private BufferedReader fileReader;
 
   TesterDiscriminator(Git git) {
-  	
-  	this.git = git;
+    this.git = git;
     command = this.git.blame();
   }
-  
+
   TesterDiscriminator(String path) {
-	  try {
-	  	gitFile = new File(path);
-	  	repository = new FileRepository(gitFile);
-	  	git = new Git(repository);
-	  } catch(Exception e) {
-	  	System.out.println("Error");
-	  	return;
-	  }
-	  
-	  command = git.blame();
+    try {
+      gitFile = new File(path);
+      repository = new FileRepository(gitFile);
+      git = new Git(repository);
+    } catch (Exception e) {
+      System.out.println("Error");
+      return;
+    }
+
+    command = git.blame();
   }
-  
+
+  public File getGitGile() {
+    return gitFile;
+  }
+
   public void setFilePath(String filePath) {
     try {
       fileReader = new BufferedReader(new FileReader(filePath));

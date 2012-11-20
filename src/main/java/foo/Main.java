@@ -11,7 +11,7 @@ public class Main {
     String path = "../GitManager/src/test/java/foo/";
     File dir = new File(path);
 
-    File file = new File("C:/TeamGamification/.git");
+    File file = new File("C:/GitManager/.git");
     try {
       Repository repos = new FileRepository(file);
       Git git = new Git(repos);
