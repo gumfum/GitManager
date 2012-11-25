@@ -56,6 +56,13 @@ public class TesterDiscriminator {
     }
   }
 
+  public void getTesterName() {
+    String line;
+    List<String> methodNames = new ArrayList<String>();
+    List<String> authorNames = new ArrayList<String>();
+    List<Integer> makeMethodLines = new ArrayList<Integer>();
+  }
+
   public void printTesterName() {
     String line;
     List<String> methodNames = new ArrayList<String>();
