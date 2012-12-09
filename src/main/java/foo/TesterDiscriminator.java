@@ -39,7 +39,7 @@ public class TesterDiscriminator {
     command = git.blame();
   }
 
-  public File getGitGile() {
+  public File getGitFile() {
     return gitFile;
   }
 

@@ -18,7 +18,7 @@ public class DiscriminateTest {
       Repository repos = new FileRepository(file);
       Git git = new Git(repos);
       TesterDiscriminator td2 = new TesterDiscriminator(git);
-      assertEquals(td1.getGitGile().length(), td2.getGitGile().length());
+      assertEquals(td1.getGitFile().length(), td2.getGitFile().length());
     } catch (Exception e) {
 
     }
