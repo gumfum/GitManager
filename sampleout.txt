@@ -1,0 +1,130 @@
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid1 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 8 - 12
+src\src\GetMid.java: 9
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid2 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 15 - 19
+src\src\GetMid.java: 18
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid3 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 22 - 26
+src\src\GetMid.java: 23
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid4 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 8 - 12
+src\src\GetMid.java: 9
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 15 - 19
+src\src\GetMid.java: 16
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid5 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 8 - 12
+src\src\GetMid.java: 9
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 15 - 19
+src\src\GetMid.java: 16
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 22 - 26
+src\src\GetMid.java: 23
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid6 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 15 - 19
+src\src\GetMid.java: 18
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 22 - 26
+src\src\GetMid.java: 25
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid7 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 22 - 26
+src\src\GetMid.java: 23
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid8 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 8 - 12
+src\src\GetMid.java: 11
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 22 - 26
+src\src\GetMid.java: 23
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid9 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 22 - 26
+src\src\GetMid.java: 23
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid10 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 22 - 26
+src\src\GetMid.java: 25
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid11 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 15 - 19
+src\src\GetMid.java: 16
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 28
+
+
+**** src\test\GetMidTest.java: test.GetMidTest.TestMid12 ****
+src\src\GetMid.java: 6
+src\src\GetMid.java: 7 - 13
+src\src\GetMid.java: 8 - 12
+src\src\GetMid.java: 11
+src\src\GetMid.java: 14 - 20
+src\src\GetMid.java: 21 - 27
+src\src\GetMid.java: 28
+
+
