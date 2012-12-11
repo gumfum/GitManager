@@ -6,9 +6,10 @@ import java.io.IOException;
 
 public class Main2 {
   public static void main(String[] args) {
-    try {
-      String root = "";
+    String root = "";
+    ComitterFinder cf = new ComitterFinder(root);
 
+    try {
       FileReader in = new FileReader("sampleout.txt");
       BufferedReader br = new BufferedReader(in);
       String line;
