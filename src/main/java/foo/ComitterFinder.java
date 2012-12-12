@@ -93,8 +93,9 @@ public class ComitterFinder {
     return result.getSourceAuthor(lineNum).getName();
   }
 
-  public void makeOutputFile(String fileName) {
-    String path = root + "output/" + fileName + ".output.txt";
+  public void makeOutputFile(String fileName, String testName) {
+    String name = fileName.substring(fileName.lastIndexOf('/'), fileName.lastIndexOf('.'));
+    String path = root + "output/" + name + "." + testName + ".output.txt";
     File outputFile = new File(path);
     try {
       PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFile)));

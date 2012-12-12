@@ -44,7 +44,7 @@ public class Main2 {
         else {
           System.out.println("** empty line **");
           if (flag) {
-            cf.makeOutputFile(testName);
+            cf.makeOutputFile(fileName, testName);
           }
           flag = false;
         }
@@ -52,7 +52,7 @@ public class Main2 {
         cf.makeAuthorList();
       }
       if (flag) {
-        cf.makeOutputFile(testName);
+        cf.makeOutputFile(fileName, testName);
       }
 
       br.close();
