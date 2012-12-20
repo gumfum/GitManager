@@ -18,7 +18,9 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepository;
 
 public class ComitterFinder {
-  private String root;
+  private String rootDir;
+  private String outputDir;
+
   private File gitFile;
   private Repository repository;
   private Git git;
@@ -28,7 +30,6 @@ public class ComitterFinder {
   private BufferedReader fileReader;
 
   private List<String> list = new ArrayList<String>();
-
   private List<String> outputList = new ArrayList<String>();
 
   ComitterFinder(Git git) {
@@ -38,12 +39,13 @@ public class ComitterFinder {
 
   ComitterFinder(String root) {
     try {
-      this.root = root;
-      gitFile = new File(this.root + ".git");
+      this.rootDir = root;
+      gitFile = new File(this.rootDir + ".git");
       repository = new FileRepository(gitFile);
       git = new Git(repository);
 
-      File outDir = new File(this.root + "output/");
+      outputDir = this.rootDir + "output/";
+      File outDir = new File(outputDir);
       if (!outDir.exists()) {
         outDir.mkdir();
       }
@@ -60,7 +62,7 @@ public class ComitterFinder {
 
   public void setFilePath(String path) {
     try {
-      fileReader = new BufferedReader(new FileReader(root + path));
+      fileReader = new BufferedReader(new FileReader(rootDir + path));
       command.setFilePath(path);
       result = command.call();
     } catch (Exception e) {
@@ -96,7 +98,7 @@ public class ComitterFinder {
   public void output(String authorName, String dataLine) {
     String words[] = dataLine.split(" ");
     String testedFileName = words[0].substring(0, words[0].length() - 1).replace('\\', '.');
-    File outputFile = new File(root + "output/" + testedFileName + ".output.txt");
+    File outputFile = new File(rootDir + "output/" + testedFileName + ".output.txt");
 
     try {
       PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
@@ -104,7 +106,7 @@ public class ComitterFinder {
       pw.print(authorName);
       pw.print(" : ");
       for (int i = 1; i < words.length; i++) {
-        pw.print(words[i]);
+        pw.print(words[i] + " ");
       }
       pw.println();
 
@@ -117,7 +119,7 @@ public class ComitterFinder {
 
   public void makeOutputFile(String fileName, String testName) {
     String name = fileName.substring(fileName.lastIndexOf('/'), fileName.lastIndexOf('.'));
-    String path = root + "output/" + name + "." + testName + ".output.txt";
+    String path = rootDir + "output/" + name + "." + testName + ".output.txt";
     File outputFile = new File(path);
     try {
       PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFile)));
@@ -148,7 +150,7 @@ public class ComitterFinder {
   }
 
   public void makeAuthorList() {
-    File file = new File(root + "output/auth.txt");
+    File file = new File(rootDir + "output/auth.txt");
     try {
       PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 
@@ -158,6 +160,52 @@ public class ComitterFinder {
       }
 
       pw.close();
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
+  public void execute(String coverageFileName) {
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(rootDir + coverageFileName));
+      String line;
+
+      String testFileName;
+      String testMethodName;
+      String authorName = "";
+
+      while ((line = br.readLine()) != null) {
+        String words[] = line.split(" ");
+
+        // filename lines
+        if (words[0].contains("****")) {
+          testFileName = words[1].replace('\\', '/').substring(0, words[1].length() - 1);
+          testMethodName = words[2].substring(words[2].lastIndexOf('.') + 1);
+          System.out.println(testFileName);
+          System.out.println(testMethodName);
+
+          setFilePath(testFileName);
+          authorName = getAuthorName(testMethodName);
+          System.out.println(authorName);
+
+          push(testMethodName, authorName);
+        }
+        // coverage data lines
+        else if (words[0].contains(".java")) {
+          System.out.println("** data **");
+          output(authorName, line);
+        }
+        // empty lines
+        else {
+          System.out.println("** empty line **");
+        }
+      }
+
+      br.close();
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
