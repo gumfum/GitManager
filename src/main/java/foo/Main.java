@@ -1,13 +1,27 @@
 package foo;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main {
   public static void main(String[] args) {
-    String root = "C:/Project/TestSample/";
-    ComitterFinder cf = new ComitterFinder(root);
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    cf.execute("testout.txt");
-    
-    ScoreCalculator sc = new ScoreCalculator(root + "output/");
-    sc.calculate();
+    try {
+      System.out.println("Root Directory : ");
+      String root = br.readLine();
+      ComitterFinder cf = new ComitterFinder(root);
+
+      System.out.println("Data File Name : ");
+      String name = br.readLine();
+      cf.execute(name);
+
+      ScoreCalculator sc = new ScoreCalculator(root + "output/");
+      sc.calculate();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 }
