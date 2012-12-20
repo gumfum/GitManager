@@ -93,6 +93,28 @@ public class ComitterFinder {
     return result.getSourceAuthor(lineNum).getName();
   }
 
+  public void output(String authorName, String dataLine) {
+    String words[] = dataLine.split(" ");
+    String testedFileName = words[0].substring(0, words[0].length() - 1).replace('\\', '.');
+    File outputFile = new File(root + "output/" + testedFileName + ".output.txt");
+
+    try {
+      PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
+
+      pw.print(authorName);
+      pw.print(" : ");
+      for (int i = 1; i < words.length; i++) {
+        pw.print(words[i]);
+      }
+      pw.println();
+
+      pw.close();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
   public void makeOutputFile(String fileName, String testName) {
     String name = fileName.substring(fileName.lastIndexOf('/'), fileName.lastIndexOf('.'));
     String path = root + "output/" + name + "." + testName + ".output.txt";

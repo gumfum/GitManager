@@ -13,46 +13,37 @@ public class Main2 {
       BufferedReader br = new BufferedReader(new FileReader(root + "testout.txt"));
       String line;
 
-      String fileName = new String("");
-      String testName = new String("");
+      String testFileName = new String("");
+      String testMethodName = new String("");
       String authorName = new String("");
-      boolean flag = false;
 
       while ((line = br.readLine()) != null) {
         String[] words = line.split(" ");
 
         // filename lines
         if (words[0].contains("****")) {
-          flag = true;
-          fileName = words[1].replace('\\', '/').substring(0, words[1].length() - 1);
-          testName = words[2].substring(words[2].lastIndexOf('.') + 1);
-          System.out.println(fileName);
-          System.out.println(testName);
+          testFileName = words[1].replace('\\', '/').substring(0, words[1].length() - 1);
+          testMethodName = words[2].substring(words[2].lastIndexOf('.') + 1);
+          System.out.println(testFileName);
+          System.out.println(testMethodName);
 
-          cf.setFilePath(fileName);
-          authorName = cf.getAuthorName(testName);
+          cf.setFilePath(testFileName);
+          authorName = cf.getAuthorName(testMethodName);
           System.out.println(authorName);
 
-          cf.push(testName, authorName);
+          cf.push(testMethodName, authorName);
         }
         // coverage data lines
         else if (words[0].contains(".java")) {
           System.out.println("** data **");
-          cf.pushOutput(authorName + " : " + line);
+          cf.output(authorName, line);
         }
         // empty lines
         else {
           System.out.println("** empty line **");
-          if (flag) {
-            cf.makeOutputFile(fileName, testName);
-          }
-          flag = false;
         }
 
         cf.makeAuthorList();
-      }
-      if (flag) {
-        cf.makeOutputFile(fileName, testName);
       }
 
       br.close();
