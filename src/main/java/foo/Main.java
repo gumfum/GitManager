@@ -6,5 +6,8 @@ public class Main {
     ComitterFinder cf = new ComitterFinder(root);
 
     cf.execute("testout.txt");
+    
+    ScoreCalculator sc = new ScoreCalculator(root + "output/");
+    sc.calculate();
   }
 }
