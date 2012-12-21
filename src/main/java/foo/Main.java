@@ -19,6 +19,8 @@ public class Main {
 
       ScoreCalculator sc = new ScoreCalculator(root + "output/");
       sc.calculate();
+
+      sc.show();
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

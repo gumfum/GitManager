@@ -46,9 +46,13 @@ public class ComitterFinder {
 
       outputDir = this.rootDir + "output/";
       File outDir = new File(outputDir);
-      if (!outDir.exists()) {
-        outDir.mkdir();
+      if (outDir.exists()) {
+        for (File file : outDir.listFiles()) {
+          file.delete();
+        }
+        outDir.delete();
       }
+      outDir.mkdir();
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -104,9 +108,9 @@ public class ComitterFinder {
       PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
 
       pw.print(authorName);
-      pw.print(" : ");
+      pw.print(":");
       for (int i = 1; i < words.length; i++) {
-        pw.print(words[i] + " ");
+        pw.print(words[i]);
       }
       pw.println();
 
