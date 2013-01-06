@@ -1,0 +1,24 @@
+package foo ;
+import static org . junit . Assert . * ;
+import org . junit . Test ;
+public class ComitterFinderTest {
+	@ Test public void test ( ) {
+		ComitterFinder cf= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 206 , 0 , 2 ) ? ( new ComitterFinder ( "C:/Project/TestSample/" ) ) : ( new ComitterFinder ( "C:/Project/TestSample/" ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 200 , 0 , 2 ) ;
+		cf . setFilePath ( "src/test/MinusTest.java" ) ;
+		String authorName= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 207 , 0 , 2 ) ? ( cf . getAuthorName ( "GetBTest" ) ) : ( cf . getAuthorName ( "GetBTest" ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 201 , 0 , 2 ) ;
+		assertEquals ( authorName , "Ryohei Takasawa" ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 202 , 0 , 2 ) ;
+		return ;
+	}
+	@ Test public void test2 ( ) {
+		ComitterFinder cf= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 208 , 0 , 2 ) ? ( new ComitterFinder ( "C:/Project/TestSample/" ) ) : ( new ComitterFinder ( "C:/Project/TestSample/" ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 203 , 0 , 2 ) ;
+		cf . setFilePath ( "src/test/ProductTest.java" ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 204 , 0 , 2 ) ;
+		assertEquals ( cf . getAuthorName ( "GetBTest" ) , "LAB-PC" ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 205 , 0 , 2 ) ;
+		return ;
+	}
+}

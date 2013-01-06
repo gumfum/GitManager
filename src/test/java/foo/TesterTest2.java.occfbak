@@ -1,0 +1,32 @@
+package foo ;
+import static org . hamcrest . CoreMatchers . * ;
+import static org . junit . Assert . * ;
+import org . junit . Test ;
+public class TesterTest2 {
+	@ Test public void Test12 ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 218 , 0 , 2 ) ;
+		assertThat ( 2 * 5 , is ( 10 ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 219 , 0 , 2 ) ;
+		return ;
+	}
+	@ Test public void Test22 ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 220 , 0 , 2 ) ;
+		assertThat ( true , is ( true ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 221 , 0 , 2 ) ;
+		return ;
+	}
+	@ Test public void hogehoge2 ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 222 , 0 , 2 ) ;
+		assertThat ( "hoge" , is ( new String ( "hoge" ) ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 223 , 0 , 2 ) ;
+		return ;
+	}
+	@ Test public void nothing ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 224 , 0 , 2 ) ;
+		return ;
+	}
+	@ Test public void lab ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 225 , 0 , 2 ) ;
+		return ;
+	}
+}

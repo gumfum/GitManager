@@ -1,0 +1,34 @@
+package foo ;
+import static org . hamcrest . CoreMatchers . * ;
+import static org . junit . Assert . * ;
+import org . junit . Test ;
+public class TesterTest {
+	@ Test public void Test1 ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 209 , 0 , 2 ) ;
+		assertThat ( 2 * 5 , is ( 10 ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 210 , 0 , 2 ) ;
+		return ;
+	}
+	@ Test public void Test2 ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 211 , 0 , 2 ) ;
+		assertThat ( true , is ( true ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 212 , 0 , 2 ) ;
+		return ;
+	}
+	@ Test public void hogehoge ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 213 , 0 , 2 ) ;
+		assertThat ( "hoge" , is ( new String ( "hoge" ) ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 214 , 0 , 2 ) ;
+		return ;
+	}
+	@ Test public void foobar ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 215 , 0 , 2 ) ;
+		return ;
+	}
+	@ Test public void hoge ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 216 , 0 , 2 ) ;
+		assertThat ( false , is ( false ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 217 , 0 , 2 ) ;
+		return ;
+	}
+}

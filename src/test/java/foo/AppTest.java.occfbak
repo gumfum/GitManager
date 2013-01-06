@@ -1,0 +1,30 @@
+package foo ;
+import junit . framework . Test ;
+import junit . framework . TestCase ;
+import junit . framework . TestSuite ;
+public class AppTest extends TestCase {
+	public AppTest ( String testName ) {
+		super ( testName ) ;
+	}
+	public static Test suite ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 197 , 0 , 2 ) ;
+		return new TestSuite ( AppTest . class ) ;
+	}
+	public void testApp ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 198 , 0 , 2 ) ;
+		assertTrue ( true ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 199 , 0 , 2 ) ;
+		return ;
+	}
+}
+/**
+ * Unit test for simple App.
+ */ /**
+     * Create the test case
+     *
+     * @param testName name of the test case
+     */ /**
+     * @return the suite of tests being tested
+     */ /**
+     * Rigourous Test :-)
+     */

@@ -21,6 +21,7 @@ public class Main {
       sc.calculate();
 
       sc.show();
+      sc.outputResult();
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

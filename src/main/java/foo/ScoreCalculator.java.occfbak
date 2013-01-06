@@ -1,0 +1,151 @@
+package foo ;
+import java . io . BufferedReader ;
+import java . io . File ;
+import java . io . FileNotFoundException ;
+import java . io . FileReader ;
+import java . io . IOException ;
+import java . util . HashMap ;
+import java . util . Iterator ;
+public class ScoreCalculator {
+	private String rootDir ;
+	private HashMap< String , Integer> scoreBoard= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 171 , 0 , 2 ) ? ( new HashMap< String , Integer> ( ) ) : ( new HashMap< String , Integer> ( ) ) ;
+	public ScoreCalculator ( String root ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 122 , 0 , 2 ) ;
+		rootDir= root ;
+	}
+	public void calculate ( ) {
+		File outputDir= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 172 , 0 , 2 ) ? ( new File ( rootDir ) ) : ( new File ( rootDir ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 123 , 0 , 2 ) ;
+		System . out . println ( "*** Calc ***" ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 124 , 0 , 2 ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 170 , 3 , 1 ) ;
+		for ( File file : outputDir . listFiles ( ) ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 170 , 3 , 0 ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 125 , 0 , 2 ) ;
+			try {
+				BufferedReader br= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 173 , 0 , 2 ) ? ( new BufferedReader ( new FileReader ( file ) ) ) : ( new BufferedReader ( new FileReader ( file ) ) ) ;
+				HashMap< String , Integer> tmpScoreBoard= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 174 , 0 , 2 ) ? ( new HashMap< String , Integer> ( ) ) : ( new HashMap< String , Integer> ( ) ) ;
+				HashMap< Integer , Integer> linePassCount= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 175 , 0 , 2 ) ? ( new HashMap< Integer , Integer> ( ) ) : ( new HashMap< Integer , Integer> ( ) ) ;
+				HashMap< Integer , String> lineAuthorName= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 176 , 0 , 2 ) ? ( new HashMap< Integer , String> ( ) ) : ( new HashMap< Integer , String> ( ) ) ;
+				String line ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 126 , 0 , 2 ) ;
+				while ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 159 , 3 , ( line= br . readLine ( ) ) != null ) ) {
+					String words [ ]= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 177 , 0 , 2 ) ? ( line . split ( ":" ) ) : ( line . split ( ":" ) ) ;
+					String authorName= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 178 , 0 , 2 ) ? ( words [ 0 ] ) : ( words [ 0 ] ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 127 , 0 , 2 ) ;
+					if ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 160 , 3 , ! scoreBoard . containsKey ( authorName ) ) ) {
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 128 , 0 , 2 ) ;
+						scoreBoard . put ( authorName , 0 ) ;
+					}
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 129 , 0 , 2 ) ;
+					if ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 161 , 3 , ! tmpScoreBoard . containsKey ( authorName ) ) ) {
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 130 , 0 , 2 ) ;
+						tmpScoreBoard . put ( authorName , 0 ) ;
+					}
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 131 , 0 , 2 ) ;
+					if ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 162 , 3 , words [ 1 ] . contains ( "-" ) ) ) {
+						String words2 [ ]= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 179 , 0 , 2 ) ? ( words [ 1 ] . split ( "-" ) ) : ( words [ 1 ] . split ( "-" ) ) ;
+						int sta= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 180 , 0 , 2 ) ? ( Integer . parseInt ( words2 [ 0 ] ) ) : ( Integer . parseInt ( words2 [ 0 ] ) ) ;
+						int end= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 181 , 0 , 2 ) ? ( Integer . parseInt ( words2 [ 1 ] ) ) : ( Integer . parseInt ( words2 [ 1 ] ) ) ;
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 132 , 0 , 2 ) ;
+						for ( int j= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 182 , 0 , 2 ) ? ( sta ) : ( sta ) ;
+						jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 169 , 3 , j<= end ) ;
+						j ++ ) {
+							int score= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 183 , 0 , 2 ) ? ( tmpScoreBoard . get ( authorName ) ) : ( tmpScoreBoard . get ( authorName ) ) ;
+							jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 133 , 0 , 2 ) ;
+							tmpScoreBoard . put ( authorName , score + 10 ) ;
+							jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 134 , 0 , 2 ) ;
+							lineAuthorName . put ( j , authorName ) ;
+							jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 135 , 0 , 2 ) ;
+							if ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 163 , 3 , ! linePassCount . containsKey ( j ) ) ) {
+								jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 136 , 0 , 2 ) ;
+								linePassCount . put ( j , 1 ) ;
+							}
+							else {
+								int key= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 184 , 0 , 2 ) ? ( linePassCount . get ( j ) ) : ( linePassCount . get ( j ) ) ;
+								jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 137 , 0 , 2 ) ;
+								linePassCount . put ( j , key + 1 ) ;
+							}
+						}
+					}
+					else {
+						int num= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 185 , 0 , 2 ) ? ( Integer . parseInt ( words [ 1 ] ) ) : ( Integer . parseInt ( words [ 1 ] ) ) ;
+						int score= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 186 , 0 , 2 ) ? ( tmpScoreBoard . get ( authorName ) ) : ( tmpScoreBoard . get ( authorName ) ) ;
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 138 , 0 , 2 ) ;
+						tmpScoreBoard . put ( authorName , score + 10 ) ;
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 139 , 0 , 2 ) ;
+						lineAuthorName . put ( num , authorName ) ;
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 140 , 0 , 2 ) ;
+						if ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 164 , 3 , ! linePassCount . containsKey ( num ) ) ) {
+							jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 141 , 0 , 2 ) ;
+							linePassCount . put ( num , 1 ) ;
+						}
+						else {
+							int key= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 187 , 0 , 2 ) ? ( linePassCount . get ( num ) ) : ( linePassCount . get ( num ) ) ;
+							jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 142 , 0 , 2 ) ;
+							linePassCount . put ( num , key + 1 ) ;
+						}
+					}
+				}
+				Iterator it= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 188 , 0 , 2 ) ? ( linePassCount . keySet ( ) . iterator ( ) ) : ( linePassCount . keySet ( ) . iterator ( ) ) ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 143 , 0 , 2 ) ;
+				while ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 165 , 3 , it . hasNext ( ) ) ) {
+					Object o= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 189 , 0 , 2 ) ? ( it . next ( ) ) : ( it . next ( ) ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 144 , 0 , 2 ) ;
+					if ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 166 , 3 , linePassCount . get ( o ) == 1 ) ) {
+						String author= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 190 , 0 , 2 ) ? ( lineAuthorName . get ( o ) ) : ( lineAuthorName . get ( o ) ) ;
+						int score= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 191 , 0 , 2 ) ? ( tmpScoreBoard . get ( author ) ) : ( tmpScoreBoard . get ( author ) ) ;
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 145 , 0 , 2 ) ;
+						tmpScoreBoard . put ( author , score + 10 ) ;
+					}
+				}
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 146 , 0 , 2 ) ;
+				System . out . println ( file . getName ( ) ) ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 147 , 0 , 2 ) ;
+				it= tmpScoreBoard . keySet ( ) . iterator ( ) ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 148 , 0 , 2 ) ;
+				while ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 167 , 3 , it . hasNext ( ) ) ) {
+					Object o= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 192 , 0 , 2 ) ? ( it . next ( ) ) : ( it . next ( ) ) ;
+					int tmpScore= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 193 , 0 , 2 ) ? ( tmpScoreBoard . get ( o ) ) : ( tmpScoreBoard . get ( o ) ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 149 , 0 , 2 ) ;
+					System . out . println ( o + " : " + tmpScore ) ;
+					int score= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 194 , 0 , 2 ) ? ( tmpScore + scoreBoard . get ( o ) ) : ( tmpScore + scoreBoard . get ( o ) ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 150 , 0 , 2 ) ;
+					scoreBoard . put ( ( String ) o , score ) ;
+				}
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 151 , 0 , 2 ) ;
+				br . close ( ) ;
+			}
+			catch ( FileNotFoundException e ) {
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 152 , 0 , 2 ) ;
+				e . printStackTrace ( ) ;
+			}
+			catch ( IOException e ) {
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 153 , 0 , 2 ) ;
+				e . printStackTrace ( ) ;
+			}
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 170 , 3 , 1 ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 170 , 3 , 1 ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 154 , 0 , 2 ) ;
+		return ;
+	}
+	public void show ( ) {
+		Iterator it= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 195 , 0 , 2 ) ? ( scoreBoard . keySet ( ) . iterator ( ) ) : ( scoreBoard . keySet ( ) . iterator ( ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 155 , 0 , 2 ) ;
+		System . out . println ( "**** RESULT ****" ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 156 , 0 , 2 ) ;
+		while ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 168 , 3 , it . hasNext ( ) ) ) {
+			Object o= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 196 , 0 , 2 ) ? ( it . next ( ) ) : ( it . next ( ) ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 157 , 0 , 2 ) ;
+			System . out . println ( o + " : " + scoreBoard . get ( o ) ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 158 , 0 , 2 ) ;
+		return ;
+	}
+}
+// multiple lines
+ // single line
+ // update scoreboard
+ // TODO Auto-generated catch block
+ // TODO Auto-generated catch block

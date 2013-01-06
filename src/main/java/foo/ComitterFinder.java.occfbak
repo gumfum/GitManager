@@ -1,0 +1,294 @@
+package foo ;
+import java . io . BufferedReader ;
+import java . io . BufferedWriter ;
+import java . io . File ;
+import java . io . FileNotFoundException ;
+import java . io . FileReader ;
+import java . io . FileWriter ;
+import java . io . IOException ;
+import java . io . PrintWriter ;
+import java . util . ArrayList ;
+import java . util . List ;
+import org . eclipse . jgit . api . BlameCommand ;
+import org . eclipse . jgit . api . Git ;
+import org . eclipse . jgit . blame . BlameResult ;
+import org . eclipse . jgit . lib . Repository ;
+import org . eclipse . jgit . storage . file . FileRepository ;
+public class ComitterFinder {
+	private String rootDir ;
+	private String outputDir ;
+	private File gitFile ;
+	private Repository repository ;
+	private Git git ;
+	private BlameCommand command ;
+	private BlameResult result ;
+	private BufferedReader fileReader ;
+	private List< String> list= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 89 , 0 , 2 ) ? ( new ArrayList< String> ( ) ) : ( new ArrayList< String> ( ) ) ;
+	private List< String> outputList= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 90 , 0 , 2 ) ? ( new ArrayList< String> ( ) ) : ( new ArrayList< String> ( ) ) ;
+	ComitterFinder ( Git git ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 0 , 0 , 2 ) ;
+		this . git= git ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 1 , 0 , 2 ) ;
+		command= this . git . blame ( ) ;
+	}
+	ComitterFinder ( String root ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 2 , 0 , 2 ) ;
+		try {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 3 , 0 , 2 ) ;
+			this . rootDir= root ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 4 , 0 , 2 ) ;
+			gitFile= new File ( this . rootDir + ".git" ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 5 , 0 , 2 ) ;
+			repository= new FileRepository ( gitFile ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 6 , 0 , 2 ) ;
+			git= new Git ( repository ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 7 , 0 , 2 ) ;
+			outputDir= this . rootDir + "output/" ;
+			File outDir= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 91 , 0 , 2 ) ? ( new File ( outputDir ) ) : ( new File ( outputDir ) ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 8 , 0 , 2 ) ;
+			if ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 80 , 3 , outDir . exists ( ) ) ) {
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 9 , 0 , 2 ) ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 87 , 3 , 1 ) ;
+				for ( File file : outDir . listFiles ( ) ) {
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 87 , 3 , 0 ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 10 , 0 , 2 ) ;
+					file . delete ( ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 87 , 3 , 1 ) ;
+				}
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 87 , 3 , 1 ) ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 11 , 0 , 2 ) ;
+				outDir . delete ( ) ;
+			}
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 12 , 0 , 2 ) ;
+			outDir . mkdir ( ) ;
+		}
+		catch ( Exception e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 13 , 0 , 2 ) ;
+			e . printStackTrace ( ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 14 , 0 , 2 ) ;
+		command= git . blame ( ) ;
+	}
+	public File getGitFile ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 15 , 0 , 2 ) ;
+		return gitFile ;
+	}
+	public void setFilePath ( String path ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 16 , 0 , 2 ) ;
+		try {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 17 , 0 , 2 ) ;
+			fileReader= new BufferedReader ( new FileReader ( rootDir + path ) ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 18 , 0 , 2 ) ;
+			command . setFilePath ( path ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 19 , 0 , 2 ) ;
+			result= command . call ( ) ;
+		}
+		catch ( Exception e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 20 , 0 , 2 ) ;
+			System . out . println ( e ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 21 , 0 , 2 ) ;
+		return ;
+	}
+	private int getMethodLine ( String methodName ) throws IOException {
+		int lineNum= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 92 , 0 , 2 ) ? ( 0 ) : ( 0 ) ;
+		String line ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 22 , 0 , 2 ) ;
+		while ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 81 , 3 , ( line= fileReader . readLine ( ) ) . contains ( methodName ) ) ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 23 , 0 , 2 ) ;
+			System . out . println ( line ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 24 , 0 , 2 ) ;
+			lineNum ++ ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 25 , 0 , 2 ) ;
+		return lineNum ;
+	}
+	public String getAuthorName ( String methodName ) {
+		int lineNum= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 93 , 0 , 2 ) ? ( - 1 ) : ( - 1 ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 26 , 0 , 2 ) ;
+		try {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 27 , 0 , 2 ) ;
+			lineNum= getMethodLine ( methodName ) ;
+		}
+		catch ( IOException e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 28 , 0 , 2 ) ;
+			e . printStackTrace ( ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 29 , 0 , 2 ) ;
+		return result . getSourceAuthor ( lineNum ) . getName ( ) ;
+	}
+	public void output ( String authorName , String dataLine ) {
+		String words [ ]= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 94 , 0 , 2 ) ? ( dataLine . split ( " " ) ) : ( dataLine . split ( " " ) ) ;
+		String testedFileName= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 95 , 0 , 2 ) ? ( words [ 0 ] . substring ( 0 , words [ 0 ] . length ( ) - 1 ) . replace ( '\\' , '.' ) ) : ( words [ 0 ] . substring ( 0 , words [ 0 ] . length ( ) - 1 ) . replace ( '\\' , '.' ) ) ;
+		File outputFile= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 96 , 0 , 2 ) ? ( new File ( rootDir + "output/" + testedFileName + ".output.txt" ) ) : ( new File ( rootDir + "output/" + testedFileName + ".output.txt" ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 30 , 0 , 2 ) ;
+		try {
+			PrintWriter pw= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 97 , 0 , 2 ) ? ( new PrintWriter ( new BufferedWriter ( new FileWriter ( outputFile , true ) ) ) ) : ( new PrintWriter ( new BufferedWriter ( new FileWriter ( outputFile , true ) ) ) ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 31 , 0 , 2 ) ;
+			pw . print ( authorName ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 32 , 0 , 2 ) ;
+			pw . print ( ":" ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 33 , 0 , 2 ) ;
+			for ( int i= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 98 , 0 , 2 ) ? ( 1 ) : ( 1 ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 85 , 3 , i< words . length ) ;
+			i ++ ) {
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 34 , 0 , 2 ) ;
+				pw . print ( words [ i ] ) ;
+			}
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 35 , 0 , 2 ) ;
+			pw . println ( ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 36 , 0 , 2 ) ;
+			pw . close ( ) ;
+		}
+		catch ( IOException e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 37 , 0 , 2 ) ;
+			e . printStackTrace ( ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 38 , 0 , 2 ) ;
+		return ;
+	}
+	public void makeOutputFile ( String fileName , String testName ) {
+		String name= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 99 , 0 , 2 ) ? ( fileName . substring ( fileName . lastIndexOf ( '/' ) , fileName . lastIndexOf ( '.' ) ) ) : ( fileName . substring ( fileName . lastIndexOf ( '/' ) , fileName . lastIndexOf ( '.' ) ) ) ;
+		String path= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 100 , 0 , 2 ) ? ( rootDir + "output/" + name + "." + testName + ".output.txt" ) : ( rootDir + "output/" + name + "." + testName + ".output.txt" ) ;
+		File outputFile= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 101 , 0 , 2 ) ? ( new File ( path ) ) : ( new File ( path ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 39 , 0 , 2 ) ;
+		try {
+			PrintWriter pw= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 102 , 0 , 2 ) ? ( new PrintWriter ( new BufferedWriter ( new FileWriter ( outputFile ) ) ) ) : ( new PrintWriter ( new BufferedWriter ( new FileWriter ( outputFile ) ) ) ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 40 , 0 , 2 ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 88 , 3 , 1 ) ;
+			for ( String str : outputList ) {
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 88 , 3 , 0 ) ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 41 , 0 , 2 ) ;
+				pw . println ( str ) ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 88 , 3 , 1 ) ;
+			}
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 88 , 3 , 1 ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 42 , 0 , 2 ) ;
+			pw . close ( ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 43 , 0 , 2 ) ;
+			outputList . clear ( ) ;
+		}
+		catch ( IOException e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 44 , 0 , 2 ) ;
+			e . printStackTrace ( ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 45 , 0 , 2 ) ;
+		return ;
+	}
+	public void pushOutput ( String line ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 46 , 0 , 2 ) ;
+		outputList . add ( line ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 47 , 0 , 2 ) ;
+		return ;
+	}
+	public void push ( String methodName , String authorName ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 48 , 0 , 2 ) ;
+		list . add ( methodName ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 49 , 0 , 2 ) ;
+		list . add ( authorName ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 50 , 0 , 2 ) ;
+		return ;
+	}
+	public void clear ( ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 51 , 0 , 2 ) ;
+		list . clear ( ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 52 , 0 , 2 ) ;
+		return ;
+	}
+	public void makeAuthorList ( ) {
+		File file= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 103 , 0 , 2 ) ? ( new File ( rootDir + "output/auth.txt" ) ) : ( new File ( rootDir + "output/auth.txt" ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 53 , 0 , 2 ) ;
+		try {
+			PrintWriter pw= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 104 , 0 , 2 ) ? ( new PrintWriter ( new BufferedWriter ( new FileWriter ( file ) ) ) ) : ( new PrintWriter ( new BufferedWriter ( new FileWriter ( file ) ) ) ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 54 , 0 , 2 ) ;
+			for ( int i= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 105 , 0 , 2 ) ? ( 0 ) : ( 0 ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 86 , 3 , i< list . size ( ) / 2 ) ;
+			++ i ) {
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 55 , 0 , 2 ) ;
+				pw . print ( list . get ( 2 * i ) + " : " ) ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 56 , 0 , 2 ) ;
+				pw . println ( list . get ( 2 * i + 1 ) ) ;
+			}
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 57 , 0 , 2 ) ;
+			pw . close ( ) ;
+		}
+		catch ( FileNotFoundException e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 58 , 0 , 2 ) ;
+			e . printStackTrace ( ) ;
+		}
+		catch ( IOException e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 59 , 0 , 2 ) ;
+			e . printStackTrace ( ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 60 , 0 , 2 ) ;
+		return ;
+	}
+	public void execute ( String coverageFileName ) {
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 61 , 0 , 2 ) ;
+		try {
+			BufferedReader br= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 106 , 0 , 2 ) ? ( new BufferedReader ( new FileReader ( rootDir + coverageFileName ) ) ) : ( new BufferedReader ( new FileReader ( rootDir + coverageFileName ) ) ) ;
+			String line ;
+			String testFileName ;
+			String testMethodName ;
+			String authorName= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 107 , 0 , 2 ) ? ( "" ) : ( "" ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 62 , 0 , 2 ) ;
+			while ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 82 , 3 , ( line= br . readLine ( ) ) != null ) ) {
+				String words [ ]= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 108 , 0 , 2 ) ? ( line . split ( " " ) ) : ( line . split ( " " ) ) ;
+				jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 63 , 0 , 2 ) ;
+				if ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 83 , 3 , words [ 0 ] . contains ( "****" ) ) ) {
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 64 , 0 , 2 ) ;
+					testFileName= words [ 1 ] . replace ( '\\' , '/' ) . substring ( 0 , words [ 1 ] . length ( ) - 1 ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 65 , 0 , 2 ) ;
+					testMethodName= words [ 2 ] . substring ( words [ 2 ] . lastIndexOf ( '.' ) + 1 ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 66 , 0 , 2 ) ;
+					System . out . println ( testFileName ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 67 , 0 , 2 ) ;
+					System . out . println ( testMethodName ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 68 , 0 , 2 ) ;
+					setFilePath ( testFileName ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 69 , 0 , 2 ) ;
+					authorName= getAuthorName ( testMethodName ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 70 , 0 , 2 ) ;
+					System . out . println ( authorName ) ;
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 71 , 0 , 2 ) ;
+					push ( testMethodName , authorName ) ;
+				}
+				else {
+					jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 72 , 0 , 2 ) ;
+					if ( jp . ac . waseda . cs . washi . CoverageWriter . WritePredicate ( 84 , 3 , words [ 0 ] . contains ( ".java" ) ) ) {
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 73 , 0 , 2 ) ;
+						System . out . println ( "** data **" ) ;
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 74 , 0 , 2 ) ;
+						output ( authorName , line ) ;
+					}
+					else {
+						jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 75 , 0 , 2 ) ;
+						System . out . println ( "** empty line **" ) ;
+					}
+				}
+			}
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 76 , 0 , 2 ) ;
+			br . close ( ) ;
+		}
+		catch ( FileNotFoundException e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 77 , 0 , 2 ) ;
+			e . printStackTrace ( ) ;
+		}
+		catch ( IOException e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 78 , 0 , 2 ) ;
+			e . printStackTrace ( ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 79 , 0 , 2 ) ;
+		return ;
+	}
+}
+// TODO Auto-generated catch block
+ // TODO Auto-generated catch block
+ // TODO Auto-generated catch block
+ // TODO Auto-generated catch block
+ // TODO Auto-generated catch block
+ // filename lines
+ // coverage data lines
+ // empty lines
+ // TODO Auto-generated catch block
+ // TODO Auto-generated catch block

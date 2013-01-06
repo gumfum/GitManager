@@ -1,0 +1,33 @@
+package foo ;
+import java . io . BufferedReader ;
+import java . io . IOException ;
+import java . io . InputStreamReader ;
+public class Main {
+	public static void main ( String [ ] args ) {
+		BufferedReader br= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 117 , 0 , 2 ) ? ( new BufferedReader ( new InputStreamReader ( System . in ) ) ) : ( new BufferedReader ( new InputStreamReader ( System . in ) ) ) ;
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 109 , 0 , 2 ) ;
+		try {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 110 , 0 , 2 ) ;
+			System . out . println ( "Root Directory : " ) ;
+			String root= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 118 , 0 , 2 ) ? ( br . readLine ( ) ) : ( br . readLine ( ) ) ;
+			ComitterFinder cf= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 119 , 0 , 2 ) ? ( new ComitterFinder ( root ) ) : ( new ComitterFinder ( root ) ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 111 , 0 , 2 ) ;
+			System . out . println ( "Data File Name : " ) ;
+			String name= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 120 , 0 , 2 ) ? ( br . readLine ( ) ) : ( br . readLine ( ) ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 112 , 0 , 2 ) ;
+			cf . execute ( name ) ;
+			ScoreCalculator sc= jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 121 , 0 , 2 ) ? ( new ScoreCalculator ( root + "output/" ) ) : ( new ScoreCalculator ( root + "output/" ) ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 113 , 0 , 2 ) ;
+			sc . calculate ( ) ;
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 114 , 0 , 2 ) ;
+			sc . show ( ) ;
+		}
+		catch ( IOException e ) {
+			jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 115 , 0 , 2 ) ;
+			e . printStackTrace ( ) ;
+		}
+		jp . ac . waseda . cs . washi . CoverageWriter . WriteStatement ( 116 , 0 , 2 ) ;
+		return ;
+	}
+}
+// TODO Auto-generated catch block

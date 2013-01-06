@@ -1,10 +1,13 @@
 package foo;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -82,20 +85,29 @@ public class ScoreCalculator {
           }
         }
 
-        System.out.println(file.getName());
+        String origName = file.getName();
+        String tempName = origName.substring(0, origName.lastIndexOf("."));
+        String fileName = tempName.substring(0, tempName.lastIndexOf(".")) + ".result.txt";
+        System.out.println(fileName);
+
+        File outputFile = new File(rootDir + fileName);
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFile)));
+
         it = tmpScoreBoard.keySet().iterator();
         while (it.hasNext()) {
-          // update scoreboard
+          // update score board
           Object o = it.next();
 
           int tmpScore = tmpScoreBoard.get(o);
           System.out.println(o + " : " + tmpScore);
+          pw.println(o + " : " + tmpScore);
 
           int score = tmpScore + scoreBoard.get(o);
           scoreBoard.put((String) o, score);
         }
 
         br.close();
+        pw.close();
       } catch (FileNotFoundException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -113,5 +125,24 @@ public class ScoreCalculator {
       Object o = it.next();
       System.out.println(o + " : " + scoreBoard.get(o));
     }
+  }
+
+  public void outputResult() {
+    try {
+      File file = new File(rootDir + ".result.txt");
+      PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+
+      Iterator it = scoreBoard.keySet().iterator();
+      while (it.hasNext()) {
+        Object o = it.next();
+        pw.println(o + " : " + scoreBoard.get(o));
+      }
+
+      pw.close();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
   }
 }
