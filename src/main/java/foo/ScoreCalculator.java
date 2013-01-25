@@ -21,7 +21,7 @@ public class ScoreCalculator {
 
   public void calculate() {
     File outputDir = new File(rootDir);
-    System.out.println("*** Calc ***");
+    // System.out.println("*** Calc ***");
 
     for (File file : outputDir.listFiles()) {
       try {
@@ -30,10 +30,19 @@ public class ScoreCalculator {
         HashMap<Integer, Integer> linePassCount = new HashMap<Integer, Integer>();
         HashMap<Integer, String> lineAuthorName = new HashMap<Integer, String>();
 
+        System.out.println(file.toString());
+
         String line;
         while ((line = br.readLine()) != null) {
           String words[] = line.split(":");
           String authorName = words[0];
+
+          System.out.println(words[1]);
+
+          if (words[1].charAt(0) == '-') {
+            System.out.println("hoge");
+            continue;
+          }
 
           if (!scoreBoard.containsKey(authorName)) {
             scoreBoard.put(authorName, 0);
@@ -44,6 +53,7 @@ public class ScoreCalculator {
 
           if (words[1].contains("-")) {
             // multiple lines
+
             String words2[] = words[1].split("-");
             int sta = Integer.parseInt(words2[0]);
             int end = Integer.parseInt(words2[1]);
@@ -60,9 +70,13 @@ public class ScoreCalculator {
                 linePassCount.put(j, key + 1);
               }
             }
+
           } else {
             // single line
             int num = Integer.parseInt(words[1]);
+            if (num == -1) {
+              continue;
+            }
             int score = tmpScoreBoard.get(authorName);
             tmpScoreBoard.put(authorName, score + 10);
             lineAuthorName.put(num, authorName);
@@ -88,7 +102,7 @@ public class ScoreCalculator {
         String origName = file.getName();
         String tempName = origName.substring(0, origName.lastIndexOf("."));
         String fileName = tempName.substring(0, tempName.lastIndexOf(".")) + ".result.txt";
-        System.out.println(fileName);
+        // System.out.println(fileName);
 
         File outputFile = new File(rootDir + fileName);
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFile)));
@@ -99,7 +113,7 @@ public class ScoreCalculator {
           Object o = it.next();
 
           int tmpScore = tmpScoreBoard.get(o);
-          System.out.println(o + " : " + tmpScore);
+          // System.out.println(o + " : " + tmpScore);
           pw.println(o + " : " + tmpScore);
 
           int score = tmpScore + scoreBoard.get(o);
@@ -119,11 +133,16 @@ public class ScoreCalculator {
   }
 
   public void show() {
-    Iterator it = scoreBoard.keySet().iterator();
+    Iterator<String> it = scoreBoard.keySet().iterator();
     System.out.println("**** RESULT ****");
     while (it.hasNext()) {
-      Object o = it.next();
-      System.out.println(o + " : " + scoreBoard.get(o));
+      String str = it.next();
+
+      if (str.contains("LAB-PC")) {
+        System.out.println("Ryohei Takasawa" + " : " + scoreBoard.get(str));
+      } else {
+        System.out.println("Kazunori Sakamoto" + " : " + scoreBoard.get(str));
+      }
     }
   }
 

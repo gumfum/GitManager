@@ -14,6 +14,7 @@ import java.util.List;
 import org.eclipse.jgit.api.BlameCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.blame.BlameResult;
+import org.eclipse.jgit.diff.RawText;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepository;
 
@@ -78,8 +79,7 @@ public class ComitterFinder {
     int lineNum = 0;
     String line;
 
-    while ((line = fileReader.readLine()).contains(methodName)) {
-      System.out.println(line);
+    while (!(line = fileReader.readLine()).contains(methodName)) {
       lineNum++;
     }
 
@@ -173,6 +173,20 @@ public class ComitterFinder {
     }
   }
 
+  public void show() {
+    RawText text = result.getResultContents();
+    try {
+      result.computeAll();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    for (int i = 0; i < text.size(); i++) {
+      System.out.print(text.getString(i));
+      System.out.println(result.getSourceAuthor(i));
+    }
+  }
+
   public void execute(String coverageFileName) {
     try {
       BufferedReader br = new BufferedReader(new FileReader(rootDir + coverageFileName));
@@ -189,23 +203,23 @@ public class ComitterFinder {
         if (words[0].contains("****")) {
           testFileName = words[1].replace('\\', '/').substring(0, words[1].length() - 1);
           testMethodName = words[2].substring(words[2].lastIndexOf('.') + 1);
-          System.out.println(testFileName);
-          System.out.println(testMethodName);
+          // System.out.println(testFileName);
+          // System.out.println(testMethodName);
 
           setFilePath(testFileName);
           authorName = getAuthorName(testMethodName);
-          System.out.println(authorName);
+          // System.out.println(authorName);
 
           push(testMethodName, authorName);
         }
         // coverage data lines
         else if (words[0].contains(".java")) {
-          System.out.println("** data **");
+          // System.out.println("** data **");
           output(authorName, line);
         }
         // empty lines
         else {
-          System.out.println("** empty line **");
+          // System.out.println("** empty line **");
         }
       }
 
